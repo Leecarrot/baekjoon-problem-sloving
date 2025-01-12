@@ -5,7 +5,7 @@ def solution(maps):
     dx = [1, -1, 0, 0]
     dy = [0, 0, 1, -1]
     
-    def dfs(x, y):
+    def bfs(x, y):
         que = deque()
         que.append((x, y))
         
@@ -24,4 +24,4 @@ def solution(maps):
             return -1
         else:
             return maps[len(maps) - 1][len(maps[0]) -1]
-    return dfs(0, 0)
+    return bfs(0, 0)
