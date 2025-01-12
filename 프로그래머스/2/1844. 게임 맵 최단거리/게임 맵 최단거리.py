@@ -25,4 +25,3 @@ def solution(maps):
         else:
             return maps[len(maps) - 1][len(maps[0]) -1]
     return dfs(0, 0)
-            
