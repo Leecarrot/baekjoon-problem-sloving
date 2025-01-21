@@ -11,11 +11,3 @@ def solution(participant, completion):
     for i in pa_dic.keys():
         if pa_dic[i] % 2 != 0:
             return i
-        
-    
-    
-        
-    
-    
-    
-    
