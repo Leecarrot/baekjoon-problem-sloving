@@ -1,14 +1,18 @@
-t, r = map(str, input().split())
+l, r = map(str, input().split())
 
 count = 0
 
-a = t.zfill(len(r))
+if min(l.count('8'), r.count('8')) == 0:
+    print(0)
     
-for i in range(len(r)):
-    if a[i] == '8' and r[i] == '8':
-        count += 1
-        
-    elif a[i] != r[i]:
-        break
+else:
+    if len(l) != len(r):
+        l = l.zfill(len(r))
     
-print(count)
+    for i in range(len(r)):
+        if l[i] == '8' and r[i] == '8':
+            count += 1
+        elif l[i] != r[i]:
+            break
+    
+    print(count)
