@@ -16,7 +16,7 @@ Empty
 
 ### 제출 일자
 
-2025년 01월 10일 18:26:39
+2025년 03월 05일 13:51:28
 
 ### 문제 설명
 
@@ -203,12 +203,21 @@ Empty
 </tbody>
       </table>
 <p>상반기에 아이스크림의 주 성분이 설탕인 아이스크림들에 대한 총주문량을 구하면 3,200 + 2,800 + 1,700 + 2,600 + 3,100 = 13,400입니다.  아이스크림의 주 성분이 과일인 아이스크림들에 대한 총주문량을 구하면 3,100 + 2,450 + 2,150 + 2,900 + 3,150 + 2,900 + 2,900 = 19,550입니다. 따라서 총주문량이 작은 순서대로 조회하는 SQL 문을 실행하면 다음과 같이 나와야 합니다. </p>
-
-<p>| INGREDIENT<u>TYPE | TOTAL</u>ORDER | </p>
-
-<p>|:----|----|<br>
-| sugar<u>based | 13400 |<br>
-| fruit</u>based | 19550 |</p>
-
+<table class="table">
+        <thead><tr>
+<th style="text-align: left">INGREDIENT_TYPE</th>
+<th>TOTAL_ORDER</th>
+</tr>
+</thead>
+        <tbody><tr>
+<td style="text-align: left">sugar_based</td>
+<td>13400</td>
+</tr>
+<tr>
+<td style="text-align: left">fruit_based</td>
+<td>19550</td>
+</tr>
+</tbody>
+      </table>
 
 > 출처: 프로그래머스 코딩 테스트 연습, https://school.programmers.co.kr/learn/challenges
