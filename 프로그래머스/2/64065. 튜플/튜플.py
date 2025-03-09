@@ -9,10 +9,7 @@ def solution(s):
     s2 = sorted(s1, key = lambda x:len(x))
     
     for i in s2:
-        if len(i) == 1:
-            result.append(i[0])
-        else:
-            for j in i:
+        for j in i:
                 if j not in result:
                     result.append(j)
     return result
