@@ -29,4 +29,3 @@ def solution(fees, records):
         else:
             result.append(fees[1])
     return result
-    
