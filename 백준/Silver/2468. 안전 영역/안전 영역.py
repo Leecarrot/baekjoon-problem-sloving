@@ -1,44 +1,49 @@
-import sys
-sys.setrecursionlimit(10 ** 6) 
+from collections import deque
 
 n = int(input())
 graph = []
 
-for i in range(n):
+for _ in range(n):
     graph.append(list(map(int, input().split())))
     
-max_num = 0
-
-for a in range(len(graph)):
-    for b in range(len(graph)):
-        if graph[a][b] >= max_num:
-            max_num = graph[a][b]
-
-
-def dfs(x, y, num):
-    if x >= n or y >= n or x <= -1 or y <= -1:
-        return False
     
-    if graph[x][y] > int(num) and not visited[x][y]:
-        visited[x][y] = True
+dx = [-1, 1, 0, 0]
+dy = [0, 0, 1, -1]
+    
+def bfs(x, y, high):
+    que = deque([(x, y)])
+    
+    while que:
+        x, y = que.popleft()
         
-        dfs(x - 1, y, num)
-        dfs(x + 1, y, num)
-        dfs(x, y - 1, num)
-        dfs(x, y + 1, num)
-        return True
-    return False
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+            
+            if 0 <= nx < n and 0 <= ny < n:
+                if graph[nx][ny] > high and not visited[nx][ny]:
+                    visited[nx][ny] = True
+                    que.append((nx, ny))
+    return 1
 
-final_max = 0
+final = []
+for g in graph:
+    for j in g:
+        final.append(j)
+        
+final = set(final)
+final.add(0)
 
-for num in range(0, max_num):
-    visited = [[False for i in range(n)] for i in range(n)]
-    count= 0
+
+li = []
+for a in final:
+    visited = [[False for _ in range(n)] for _ in range(n)]  # 방문 배열 초기화
+    result = 0
     for i in range(n):
         for j in range(n):
-            if dfs(i, j, num) == True:
-                count += 1
-    if count >= final_max:
-        final_max = count
+            if graph[i][j] > a and not visited[i][j]:
+                result += bfs(i, j, a)
+    li.append(result)
 
-print(final_max)
+
+print(max(li))
