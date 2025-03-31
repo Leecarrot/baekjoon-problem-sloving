@@ -1,22 +1,22 @@
 def solution(dartResult):
-    import re
+    final = []  # 점수를 저장할 리스트
+    li = {'S': 1, 'D': 2, 'T': 3}  # 보너스 제곱 값
     
-    # 정규식을 이용해 각 점수 블록을 분리 (점수+보너스+옵션까지)
-    rounds = re.findall(r'(\d+)([SDT])([*#]?)', dartResult)
+    result = ''  # 숫자를 담을 문자열
     
-    scores = []
-    bonus = {'S': 1, 'D': 2, 'T': 3}
-
-    for i, (num, b, option) in enumerate(rounds):
-        score = int(num) ** bonus[b]  # 점수 계산
-        
-        if option == '*':  # 스타상 (*)
-            score *= 2
-            if i > 0:  # 이전 점수도 2배
-                scores[i - 1] *= 2
-        elif option == '#':  # 아차상 (#)
-            score *= -1
-
-        scores.append(score)
-
-    return sum(scores)
+    for i in dartResult:
+        if i.isdigit():
+            result += i  # 숫자 이어붙이기 (10 처리 가능)
+        elif i in li:
+            final.append(int(result) ** li[i])  # 점수 계산 후 저장
+            result = ''  # 숫자 초기화
+        elif i == '*':
+            # 현재 점수와 이전 점수를 2배 적용
+            if final:
+                final[-1] *= 2
+            if len(final) > 1:
+                final[-2] *= 2
+        elif i == '#':
+            final[-1] *= -1  # 바로 앞 점수를 음수로 변환
+    
+    return sum(final)  # 최종 점수 계산
