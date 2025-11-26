@@ -1,18 +1,16 @@
 def solution(clothes):
+    style = {}
     
-    cloth_dict = {}
-    
-    for i in clothes:
-        if i[1] not in cloth_dict:
-            cloth_dict[i[1]] = 2
+    # 옷 종류별로 딕셔너리에 모으기
+    for cloth_name, cloth_type in clothes:
+        if cloth_type not in style:
+            style[cloth_type] = [cloth_name]
         else:
-            cloth_dict[i[1]] += 1
+            style[cloth_type].append(cloth_name)
     
-    do = 1
+    # 조합 경우 수 계산
+    count = 1
+    for items in style.values():
+        count *= (len(items) + 1)  # 안 입는 경우 포함
     
-    for j in cloth_dict.values():
-            do = do * j
-            
-    return do - 1
-
-        
+    return count - 1  # 모두 안 입는 경우 제외
